@@ -32,22 +32,21 @@
             --overlay-color: rgba(44, 24, 16, 0.6);
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #D2B48C;
-                --secondary-color: #8B4513;
-                --accent-color: #90EE90;
-                --background-color: #1A1612;
-                --surface-color: #2C2419;
-                --text-primary: #F5F5DC;
-                --text-secondary: #D2B48C;
-                --text-muted: #A0906B;
-                --border-color: #3D342A;
-                --shadow-color: rgba(210, 180, 140, 0.1);
-                --overlay-color: rgba(245, 245, 220, 0.6);
-            }
+         /* Dark theme - applied when checkbox is checked */
+        #theme-switch:checked ~ * {
+            --primary-color: #D2B48C;
+            --secondary-color: #8B4513;
+            --accent-color: #90EE90;
+            --background-color: #1A1612;
+            --surface-color: #2C2419;
+            --text-primary: #F5F5DC;
+            --text-secondary: #D2B48C;
+            --text-muted: #A0906B;
+            --border-color: #3D342A;
+            --shadow-color: rgba(210, 180, 140, 0.1);
+            --overlay-color: rgba(245, 245, 220, 0.6);
+            --nav-bg: rgba(26, 22, 18, 0.95);
         }
-
         /* Theme toggle */
         .theme-toggle {
             position: fixed;
