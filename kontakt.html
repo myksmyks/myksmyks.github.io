@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt – Fotografia Koni</title>
+  <meta name="description" content="Kontakt – zapytaj o sesję fotograficzną" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+  <header class="hero" role="banner">
+    <h1>Kontakt</h1>
+    <p>Skontaktuj się ze mną, aby umówić sesję lub zadać pytanie</p>
+  </header>
+  <nav class="main-nav" role="navigation" aria-label="Główne menu">
+    <a href="index.html">Start</a>
+    <a href="sesje.html">Sesje</a>
+    <a href="cennik.html">Cennik</a>
+    <a href="kontakt.html" class="active" aria-current="page">Kontakt</a>
+  </nav>
+  <main>
+    <section tabindex="-1">
+      <h2>Formularz kontaktowy</h2>
+      <form action="mailto:twoj@email.com" method="POST" enctype="text/plain" aria-label="Formularz kontaktowy">
+        <input type="text" name="name" placeholder="Imię" required aria-required="true" />
+        <input type="email" name="email" placeholder="E‑mail" required aria-required="true" />
+        <textarea name="message" rows="5" placeholder="Wiadomość"></textarea>
+        <button type="submit">Wyślij</button>
+      </form>
+      <div class="social" aria-label="Linki do social media" style="margin-top: 2rem; text-align:center;">
+       

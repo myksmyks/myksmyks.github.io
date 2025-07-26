@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fotografia Koni – Portfolio</title>
+  <meta name="description" content="Portfolio fotografii koni – plener, portrety, emocje" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+  <header class="hero" role="banner">
+    <h1>Fotografia Koni</h1>
+    <p>Pasja • Ruch • Emocje</p>
+  </header>
+  <nav class="main-nav" role="navigation" aria-label="Główne menu">
+    <a href="index.html" class="active" aria-current="page">Start</a>
+    <a href="sesje.html">Sesje</a>
+    <a href="cennik.html">Cennik</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <main>
+    <section id="o-mnie" tabindex="-1">
+      <h2>O mnie</h2>
+      <p>
+        Nazywam się [Twoje Imię] i od lat fotografuję konie – sport, natura, relacje.
+        Tworzę emocjonalne portrety w pięknym świetle, oddające charakter i siłę tych zwierząt.
+      </p>
+    </section>
+    <section id="portfolio" tabindex="-1">
+      <h2>Galeria</h2>
+      <div class="filters" role="radiogroup" aria-label="Filtry zdjęć portfolio">
+        <input type="radio" name="filt" id="all" checked />
+        <label for="all">Wszystkie</label>
+
+        <input type="radio" name="filt" id="plener" />
+        <label for="plener">Plener</label>
+
+        <input type="radio" name="filt" id="zawody" />
+        <label for="zawody">Zawody</label>
+
+        <input type="radio" name="filt" id="portret" />
+        <label for="portret">Portrety</label>
+      </div>
+      <div class="gallery">
+        <img src="images/horse1.jpg" class="photo plener" alt="Koń w plenerze" />
+        <img src="images/horse2.jpg" class="photo zawody" alt="Koń na zawodach" />
+        <img src="images/horse3.jpg" class="photo portret" alt="Portret konia" />
+        <img src="images/horse4.jpg" class="photo plener" alt="Koń galopujący w plenerze" />
+        <img src="images/horse5.jpg" class="photo zawody" alt="Koń podczas zawodów" />
+        <img src="images/horse6.jpg" class="photo portret" alt="Zbliżenie portretu konia" />
+      </div>
+    </section>
+    <section id="kontakt" tabindex="-1">
+      <h2>Kontakt</h2>
+      <form action="mailto:twoj@email.com" method="POST" enctype="text/plain" aria-label="Formularz kontaktowy">
+        <input type="text" name="name" placeholder="Imię" required aria-required="true" />
+        <input type="email" name="email" placeholder="E‑mail" required aria-required="true" />
+        <textarea name="message" rows="5" placeholder="Wiadomość"></textarea>
+        <button type="submit">Wyślij</button>
+      </form>
+      <div class="social" aria-label="Linki do social media">
+        <a href="https://instagram.com/twojanazwa" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        <a href="https://facebook.com/twojanazwa" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+      </div>
+    </section>
+  </main>
+  <footer role="contentinfo">
+    &copy; 2025 [Twoje Imię] • Wszelkie prawa zastrzeżone
+  </footer>
+</body>
+</html>

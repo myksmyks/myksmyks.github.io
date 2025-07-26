@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cennik – Fotografia Koni</title>
+  <meta name="description" content="Cennik usług fotograficznych – sesje koni" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+<body>
+  <header class="hero" role="banner">
+    <h1>Cennik</h1>
+    <p>Sprawdź orientacyjne ceny sesji fotograficznych</p>
+  </header>
+  <nav class="main-nav" role="navigation" aria-label="Główne menu">
+    <a href="index.html">Start</a>
+    <a href="sesje.html">Sesje</a>
+    <a href="cennik.html" class="active" aria-current="page">Cennik</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <main>
+    <section tabindex="-1">
+      <h2>Cennik usług</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Rodzaj sesji</th>
+            <th>Cena (PLN)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Sesja plenerowa</td><td>500 zł</td></tr>
+          <tr><td>Sesja na zawodach</td><td>600 zł</td></tr>
+          <tr><td>Portret konia</td><td>450 zł</td></tr>
+          <tr><td>Reportaż</td><td>700 zł</td></tr>
+        </tbody>
+      </table>
+      <p>Ceny orientacyjne, mogą się różnić w zależności od lokalizacji i wymagań klienta.</p>
+    </section>
+  </main>
+  <footer role="contentinfo">
+    &copy; 2025 [Twoje Imię] • Wszelkie prawa zastrzeżone
+  </footer>
+  <style>
+    table {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem auto 2rem;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+    th, td {
+      border: 1px solid var(--accent);
+      padding: 0.8rem 1rem;
+      text-align: left;
+    }
+    th {
+      background-color: var(--accent);
+      color: var(--bg);
+    }
+    tbody tr:nth-child(even) {
+      background-color: var(--card);
+    }
+    tbody tr:hover {
+      background-color: #ffd966;
+    }
+    p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--fg);
+    }
+  </style>
+</body>
+</html>
