@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cennik sesji fotograficznych koni - przejrzyste ceny za portrety, sesje plenerowe, zawody jeździeckie. Profesjonalna fotografia koni.">
+    <title>Cennik - Daria Maria Fotografia</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Jasny motyw */
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #228B22;
+            --background-color: #FEFEFE;
+            --surface-color: #F9F7F4;
+            --text-primary: #2C1810;
+            --text-secondary: #5D4E37;
+            --text-muted: #8B7355;
+            --border-color: #E8E2D5;
+            --shadow-color: rgba(139, 69, 19, 0.1);
+            --overlay-color: rgba(44, 24, 16, 0.6);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #D2B48C;
+                --secondary-color: #8B4513;
+                --accent-color: #90EE90;
+                --background-color: #1A1612;
+                --surface-color: #2C2419;
+                --text-primary: #F5F5DC;
+                --text-secondary: #D2B48C;
+                --text-muted: #A0906B;
+                --border-color: #3D342A;
+                --shadow-color: rgba(210, 180, 140, 0.1);
+                --overlay-color: rgba(245, 245, 220, 0.6);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            background: linear-gradient(var(--overlay-color), var(--overlay-color)), url('images/cennik-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Pricing cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--surface-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px var(--shadow-color);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 50px var(--shadow-color);
+            border-color: var(--primary-color);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'NAJPOPULARNIEJSZE';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .card-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        /* Additional services */
+        .additional-services {
+            background: var(--surface-color);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+        }
+
+        .additional-services h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--background-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        .services-table th,
+        .services-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .services-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .services-table tr:hover {
+            background: var(--border-color);
+        }
+
+        .services-table .price {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: var(--surface-color);
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--border-color);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            display: none;
+        }
+
+        /* CSS-only FAQ toggle */
+        .faq-toggle {
+            display: none;
+        }
+
+        .faq-toggle:checked + .faq-question + .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle:checked + .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-question::after {
+            content: '▼';
+            transition: transform 0.3s ease;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .contact-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-cta .cta-button {
+            background: white;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-cta .cta-button:hover {
+            background: var(--surface-color);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--background-color);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .page-header {
+                padding: 4rem 1rem 3rem;
+            }
+
+            main {
+                padding: 3rem 1rem;
+            }
+
+            .additional-services {
+                padding: 2rem 1rem;
+            }
+
+            .services-table {
+                font-size: 0.9rem;
+            }
+
+            .services-table th,
+            .services-table td {
+                padding: 0.8rem;
+            }
+
+            .contact-cta {
+                padding: 3rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .card-price {
+                font-size: 2.5rem;
+            }
+
+            .services-table th,
+            .services-table td {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Przejdź do treści głównej</a>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">Daria Maria</a>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="sesje.html">Sesje</a></li>
+                <li><a href="cennik.html" class="active">Cennik</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Cennik</h1>
+        <p>Przejrzyste ceny za profesjonalne sesje fotograficzne</p>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+            
+            <!-- Basic Package -->
+            <div class="pricing-card">
+                <div class="card-icon">🐴</div>
+                <h3 class="card-title">Portret Basic</h3>
+                <div class="card-price">800<span style="font-size: 1rem;">zł</span></div>
+                <p class="card-price-note">Idealne na początek</p>
+                <ul class="card-features">
+                    <li>Sesja 1-1.5 godziny</li>
+                    <li>Do 2 różnych tła/ustawień</li>
+                    <li>20 zdjęć do wyboru</li>
+                    <li>5 zdjęć w pełnej rozdzielczości</li>
+                    <li>Podstawowy retusz</li>
+                    <li>Galeria online do pobrania</li>
+                </ul>
+                <a href="kontakt.html" class="cta-button">Wybierz Pakiet</a>
+            </div>
+
+            <!-- Standard Package - Featured -->
+            <div class="pricing-card featured">
+                <div class="card-icon">🌿</div>
+                <h3 class="card-title">Plener Standard</h3>
+                <div class="card-price">1200<span style="font-size: 1rem;">zł</span></div>
+                <p class="card-price-note">Najczęściej wybierane</p>
+                <ul class="card-features">
+                    <li>Sesja 2-3 godziny</li>
+                    <li>Wybór lokalizacji plenerowej</li>
+                    <li>40 zdjęć do wyboru</li>
+                    <li>10 zdjęć w pełnej rozdzielczości</li>
+                    <li>Profesjonalny retusz</li>
+                    <li>Zdjęcia przygotowane do druku</li>
+                    <li>Galeria online przez 6 miesięcy</li>
+                </ul>
+                <a href="kontakt.html" class="cta-button">Wybierz Pakiet</a>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="pricing-card">
+                <div class="card-icon">💝</div>
+                <h3 class="card-title">Premium z Jeźdźcem</h3>
+                <div class="card-price">1600<span style="font-size: 1rem;">zł</span></div>
+                <p class="card-price-note">Pełen luksus</p>
+                <ul class="card-features">
+                    <li>Sesja 3-4 godziny</li>
+                    <li>2-3 różne lokalizacje</li>
+                    <li>60 zdjęć do wyboru</li>
+                    <li>20 zdjęć w pełnej rozdzielczości</li>
+                    <li>Artystyczny retusz</li>
+                    <li>Wydruki 20x30cm (5 szt.)</li>
+                    <li>Pendrive z wszystkimi zdjęciami</li>
+                    <li>Dożywotni dostęp do galerii</li>
+                </ul>
+                <a href="kontakt.html" class="cta-button">Wybierz Pakiet</a>
+            </div>
+
+            <!-- Competition Package -->
+            <div class="pricing-card">
+                <div class="card-icon">🏆</div>
+                <h3 class="card-title">Zawody Sportowe</h3>
+                <div class="card-price">1800<span style="font-size: 1rem;">zł</span></div>
+                <p class="card-price-note">Cały dzień zawodów</p>
+                <ul class="card-features">
+                    <li>Fotografowanie przez cały dzień</li>
+                    <li>Zdjęcia z różnych konkurencji</li>
+                    <li>Galeria 100+ zdjęć</li>
+                    <li>25 zdjęć w pełnej rozdzielczości</li>
+                    <li>Ekspresowa obróbka</li>
+                    <li>Zdjęcia gotowe następnego dnia</li>
+                    <li>Możliwość dokupienia dodatkowych</li>
+                </ul>
+                <a href="kontakt.html" class="cta-button">Wybierz Pakiet</a>
+            </div>
+        </div>
+
+        <!-- Additional Services -->
+        <section class="additional-services">
+            <h2>Usługi Dodatkowe</h2>
+            <table class="services-table">
+                <thead>
+                    <tr>
+                        <th>Usługa</th>
+                        <th>Opis</th>
+                        <th>Cena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dodatkowe zdjęcie HD</td>
+                        <td>Każde dodatkowe zdjęcie w pełnej rozdzielczości</td>
+                        <td class="price">50 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Wydruk 30x40cm</td>
+                        <td>Profesjonalny wydruk na papierze fotograficznym</td>
+                        <td class="price">80 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Wydruk 50x70cm</td>
+                        <td>Duży wydruk idealny do oprawienia</td>
+                        <td class="price">150 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Album fotograficzny</td>
+                        <td>20-stronicowy album z najlepszymi zdjęciami</td>
+                        <td class="price">300 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Retusz specjalny</td>
+                        <td>Zaawansowana obróbka artystyczna</td>
+                        <td class="price">100 zł/zdjęcie</td>
+                    </tr>
+                    <tr>
+                        <td>Dojazd powyżej 50km</td>
+                        <td>Koszt dojazdu poza standardowy obszar</td>
+                        <td class="price">2 zł/km</td>
+                    </tr>
+                    <tr>
+                        <td>Sesja ekspresowa</td>
+                        <td>Zdjęcia gotowe w ciągu 24 godzin</td>
+                        <td class="price">+300 zł</td>
+                    </tr>
+                    <tr>
+                        <td>Dodatkowy koń</td>
+                        <td>Każdy dodatkowy koń w sesji</td>
+                        <td class="price">+200 zł</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Często Zadawane Pytania o Cenach</h2>
+            
+            <div class="faq-item">
+                <input type="checkbox" id="faq1" class="faq-toggle">
+                <label for="faq1" class="faq-question">Czy ceny są ostateczne?</label>
+                <div class="faq-answer">
+                    <p>Podane ceny są cenami bazowymi dla standardowych sesji. Ostateczna cena może się różnić w zależności od specjalnych wymagań, lokalizacji czy dodatkowych usług. Zawsze ustalamy ostateczną cenę przed sesją.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq2" class="faq-toggle">
+                <label for="faq2" class="faq-question">Kiedy płacę za sesję?</label>
+                <div class="faq-answer">
+                    <p>Wymagana jest zaliczka w wysokości 50% ceny sesji przy rezerwacji terminu. Pozostała kwota płatna jest w dniu sesji przed jej rozpoczęciem lub przelewem do 3 dni po sesji.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq3" class="faq-toggle">
+                <label for="faq3" class="faq-question">Czy mogę anulować sesję?</label>
+                <div class="faq-answer">
+                    <p>Sesję można anulować bez opłat do 48 godzin przed terminem. W przypadku anulowania w ostatniej chwili, zaliczka nie podlega zwrotowi. Możliwe jest przełożenie sesji na inny termin.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq4" class="faq-toggle">
+                <label for="faq4" class="faq-question">Czy robicie faktury VAT?</label>
+                <div class="faq-answer">
+                    <p>Tak, wystawiamy faktury VAT dla wszystkich usług. Jesteśmy zarejestrowanymi podatnikami VAT, więc wszystkie ceny zawierają już podatek VAT w wysokości 23%.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <input type="checkbox" id="faq5" class="faq-toggle">
+                <label for="faq5" class="faq-question">Czy oferujecie rabaty?</label>
+                <div class="faq-answer">
+                    <p>Oferujemy rabaty dla stałych klientów, sesji rodzinnych z kilkoma końmi oraz przy rezerwacji kilku sesji w roku. Szczegóły ustalamy indywidualnie - skontaktuj się z nami!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact-cta">
+            <h2>Gotowy na Sesję?</h2>
+            <p>Skontaktuj się z nami, aby omówić szczegóły i zarezerwować termin dla swojego konia</p>
+            <a href="kontakt.html" class="cta-button">Umów Sesję Teraz</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--text-primary); color: var(--background-color); padding: 3rem 2rem 2rem; margin-top: 4rem;">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--secondary-color);">Daria Maria Fotografia</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0.5rem;">Profesjonalna fotografia koni</p>
+                <p style="color: rgba(255, 255, 255, 0.8);">Specjalizacja: portrety, sesje plenerowe, zawody jeździeckie</p>
+            </div>
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--secondary-color);">Kontakt</h3>
+                <a href="mailto:kontakt@dariamaria.pl" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: block; margin-bottom: 0.5rem;">kontakt@dariamaria.pl</a>
+                <a href="tel:+48123456789" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: block; margin-bottom: 0.5rem;">+48 123 456 789</a>
+                <p style="color: rgba(255, 255, 255, 0.8);">Warszawa i okolice</p>
+            </div>
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--secondary-color);">Śledź Mnie</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="https://instagram.com/dariamaria_foto" aria-label="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; transition: all 0.3s ease; text-decoration: none;">📷</a>
+                    <a href="https://facebook.com/dariamaria.fotografia" aria-label="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; transition: all 0.3s ease; text-decoration: none;">📘</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.6);">
+            <p>&copy; 2024 Daria Maria Fotografia. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+</body>
+</html>

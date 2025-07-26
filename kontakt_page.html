@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skontaktuj się z Daria Maria Fotografia - umów sesję fotograficzną koni. Profesjonalna fotografia koni w Warszawie i okolicach.">
+    <title>Kontakt - Daria Maria Fotografia</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Jasny motyw */
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #228B22;
+            --background-color: #FEFEFE;
+            --surface-color: #F9F7F4;
+            --text-primary: #2C1810;
+            --text-secondary: #5D4E37;
+            --text-muted: #8B7355;
+            --border-color: #E8E2D5;
+            --shadow-color: rgba(139, 69, 19, 0.1);
+            --overlay-color: rgba(44, 24, 16, 0.6);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #D2B48C;
+                --secondary-color: #8B4513;
+                --accent-color: #90EE90;
+                --background-color: #1A1612;
+                --surface-color: #2C2419;
+                --text-primary: #F5F5DC;
+                --text-secondary: #D2B48C;
+                --text-muted: #A0906B;
+                --border-color: #3D342A;
+                --shadow-color: rgba(210, 180, 140, 0.1);
+                --overlay-color: rgba(245, 245, 220, 0.6);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            background: linear-gradient(var(--overlay-color), var(--overlay-color)), url('images/kontakt-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Contact layout */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact info */
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--surface-color);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .contact-details h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+            margin: 0.2rem 0;
+        }
+
+        .contact-details a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social media */
+        .social-section {
+            margin-top: 3rem;
+        }
+
+        .social-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        /* Contact form */
+        .contact-form {
+            background: var(--surface-color);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 30px var(--shadow-color);
+        }
+
+        .contact-form h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--background-color);
+            color: var(--text-primary);
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        /* Required field indicator */
+        .required {
+            color: #e74c3c;
+        }
+
+        /* Form validation styles */
+        .form-group input:invalid,
+        .form-group select:invalid,
+        .form-group textarea:invalid {
+            border-color: #e74c3c;
+        }
+
+        .form-group input:valid,
+        .form-group select:valid,
+        .form-group textarea:valid {
+            border-color: var(--accent-color);
+        }
+
+        /* Map section */
+        .map-section {
+            margin-top: 4rem;
+            background: var(--surface-color);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--border-color);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Working hours */
+        .hours-section {
+            margin-top: 3rem;
+            background: var(--background-color);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .hours-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .hours-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--background-color);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+                border-top: 1px solid var(--border-color);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-form {
+                order: -1;
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-direction: column;
+            }
+
+            .hours-list {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                padding: 4rem 1rem 3rem;
+            }
+
+            main {
+                padding: 3rem 1rem;
+            }
+
+            .map-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .contact-item {
+                padding: 1rem;
+            }
+
+            .social-links a {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Success message styles */
+        .success-message {
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Loading state */
+        .submit-button:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Przejdź do treści głównej</a>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <nav>
+            <a href="index.html" class="logo">Daria Maria</a>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Strona Główna</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="sesje.html">Sesje</a></li>
+                <li><a href="cennik.html">Cennik</a></li>
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Kontakt</h1>
+        <p>Skontaktuj się z nami i umów sesję dla swojego konia</p>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="contact-layout">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Informacje Kontaktowe</h2>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:kontakt@dariamaria.pl">kontakt@dariamaria.pl</a></p>
+                        <p>Odpowiadamy w ciągu 24 godzin</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h3>Telefon</h3>
+                        <p><a href="tel:+48123456789">+48 123 456 789</a></p>
+                        <p>Pon-Pt: 9:00-18:00, Sob: 10:00-16:00</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Lokalizacja</h3>
+                        <p>Warszawa i okolice</p>
+                        <p>Dojazd do klienta w promieniu 100km</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">⏰</div>
+                    <div class="contact-details">
+                        <h3>Czas Odpowiedzi</h3>
+                        <p>Email: do 24 godzin</p>
+                        <p>Telefon: w godzinach pracy</p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="social-section">
+                    <h3>Śledź Nas w Social Media</h3>
+                    <div class="social-links">
+                        <a href="https://instagram.com/dariamaria_foto" target="_blank" rel="noopener">
+                            📷 Instagram
+                        </a>
+                        <a href="https://facebook.com/dariamaria.fotografia" target="_blank" rel="noopener">
+                            📘 Facebook
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Working Hours -->
+                <div class="hours-section">
+                    <h3>Godziny Pracy</h3>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span>Poniedziałek</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Wtorek</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Środa</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Czwartek</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Piątek</span>
+                            <span>9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Sobota</span>
+                            <span>10:00 - 16:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Niedziela</span>
+                            <span>Sesje na życzenie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Umów Sesję</h2>
+                <div class="success-message" id="success-message">
+                    Dziękujemy za wiadomość! Odpowiemy w ciągu 24 godzin.
+                </div>
+                
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Imię i Nazwisko <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required aria-describedby="name-error">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required aria-describedby="email-error">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="session-type">Rodzaj Sesji <span class="required">*</span></label>
+                            <select id="session-type" name="session-type" required>
+                                <option value="">Wybierz rodzaj sesji</option>
+                                <option value="portret">Sesja Portretowa</option>
+                                <option value="plener">Sesja Plenerowa</option>
+                                <option value="zawody">Zawody Jeździeckie</option>
+                                <option value="jezdziec">Sesja z Jeźdźcem</option>
+                                <option value="inne">Inne (opisz w wiadomości)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budżet</label>
+                            <select id="budget" name="budget">
+                                <option value="">Wybierz budżet</option>
+                                <option value="800-1200">800 - 1200 zł</option>
+                                <option value="1200-1600">1200 - 1600 zł</option>
+                                <option value="1600-2000">1600 - 2000 zł</option>
+                                <option value="2000+">Powyżej 2000 zł</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Preferowana Lokalizacja</label>
+                            <input type="text" id="location" name="location" placeholder="np. Warszawa, Łódź...">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferowany Termin</label>
+                            <input type="date" id="date" name="date">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horse-info">Informacje o Koniu</label>
+                        <textarea id="horse-info" name="horse-info" placeholder="Opisz swojego konia: rasa, wiek, charakter, doświadczenie z sesjami fotograficznymi..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Wiadomość <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="Opisz swoje oczekiwania, wizję sesji, dodatkowe informacje..."></textarea>
+                    </div>
+
+                    <input type="hidden" name="_subject" value="Nowa wiadomość z formularza kontaktowego">
+                    <input type="hidden" name="_next" value="https://yourdomain.com/dziękujemy.html">
+                    <input type="text" name="_gotcha" style="display:none">
+
+                    <button type="submit" class="submit-button">
+                        Wyślij Wiadomość
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <h2>Obszar Działania</h2>
+            <div class="map-placeholder">
+                🗺️ Mapa Obszaru Działania<br>
+                <small>Warszawa i okolice w promieniu 100km</small>
+            </div>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">
+                Głównie działamy w Warszawie i okolicach. Dla sesji w większej odległości naliczamy dodatkowy koszt dojazdu. 
+                Skontaktuj się z nami, aby omówić szczegóły!
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--text-primary); color: var(--background-color); padding: 3rem 2rem 2rem; margin-top: 4rem;">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--secondary-color);">Daria Maria Fotografia</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0.5rem;">Profesjonalna fotografia koni</p>
+                <p style="color: rgba(255, 255, 255, 0.8);">Specjalizacja: portrety, sesje plenerowe, zawody jeździeckie</p>
+            </div>
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--secondary-color);">Kontakt</h3>
+                <a href="mailto:kontakt@dariamaria.pl" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: block; margin-bottom: 0.5rem;">kontakt@dariamaria.pl</a>
+                <a href="tel:+48123456789" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; display: block; margin-bottom: 0.5rem;">+48 123 456 789</a>
+                <p style="color: rgba(255, 255, 255, 0.8);">Warszawa i okolice</p>
+            </div>
+            <div>
+                <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--secondary-color);">Śledź Mnie</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <a href="https://instagram.com/dariamaria_foto" aria-label="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; transition: all 0.3s ease; text-decoration: none;">📷</a>
+                    <a href="https://facebook.com/dariamaria.fotografia" aria-label="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; transition: all 0.3s ease; text-decoration: none;">📘</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.6);">
+            <p>&copy; 2024 Daria Maria Fotografia. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+</body>
+</html>
