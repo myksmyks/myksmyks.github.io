@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equine Moments - Horse Photography Portfolio</title>
+    <title>Chwile Konne - Portfolio Fotografii Koni</title>
     <style>
         * {
             margin: 0;
@@ -19,13 +19,53 @@
             --dark-color: #1a0f08;
             --text-light: #f0f0f0;
             --text-dark: #333;
+            --bg-primary: #f5f5dc;
+            --bg-secondary: #ffffff;
+            --card-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #d2691e;
+            --secondary-color: #cd853f;
+            --accent-color: #ffa500;
+            --light-color: #1a1a1a;
+            --dark-color: #f5f5f5;
+            --text-light: #f0f0f0;
+            --text-dark: #e0e0e0;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --card-bg: #333333;
         }
 
         body {
             font-family: 'Georgia', serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background: linear-gradient(135deg, var(--light-color) 0%, #e8dcc0 100%);
+            background: var(--bg-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         /* Navigation */
@@ -37,6 +77,10 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(26, 26, 26, 0.95);
         }
 
         .nav-container {
@@ -141,6 +185,45 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
+        /* Social Media Buttons */
+        .social-floating {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .social-btn.facebook {
+            background: #1877f2;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
         /* Main Content */
         .page-content {
             display: none;
@@ -209,12 +292,16 @@
 
         .gallery-item {
             position: relative;
-            background: white;
+            background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
             cursor: pointer;
+        }
+
+        [data-theme="dark"] .gallery-item {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .gallery-item:hover {
@@ -247,6 +334,10 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+        }
+
+        [data-theme="dark"] .gallery-overlay {
+            background: rgba(26, 26, 26, 0.9);
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -296,12 +387,16 @@
         }
 
         .skill-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .skill-card {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         .skill-card:hover {
@@ -322,7 +417,7 @@
         }
 
         .service-card {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
@@ -330,9 +425,17 @@
             transition: all 0.3s ease;
         }
 
+        [data-theme="dark"] .service-card {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        [data-theme="dark"] .service-card:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
 
         .service-price {
@@ -370,10 +473,14 @@
         }
 
         .contact-form {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .contact-form {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         .form-group {
@@ -396,6 +503,14 @@
             border-radius: 10px;
             font-family: inherit;
             transition: border-color 0.3s ease;
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+        }
+
+        [data-theme="dark"] .form-group input,
+        [data-theme="dark"] .form-group textarea,
+        [data-theme="dark"] .form-group select {
+            border-color: #555;
         }
 
         .form-group input:focus,
@@ -453,11 +568,15 @@
         }
 
         .blog-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .blog-card {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         .blog-card:hover {
@@ -567,6 +686,11 @@
             padding: 3rem 2rem;
         }
 
+        [data-theme="dark"] .footer {
+            background: var(--bg-secondary);
+            color: var(--text-dark);
+        }
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -583,8 +707,29 @@
             transition: color 0.3s ease;
         }
 
+        [data-theme="dark"] .social-link {
+            color: var(--text-dark);
+        }
+
         .social-link:hover {
             color: var(--accent-color);
+        }
+
+        /* Form Notice */
+        .form-notice {
+            background: #e8f4fd;
+            border: 1px solid #b6d7ff;
+            color: #0056b3;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .form-notice {
+            background: #1a2332;
+            border-color: #2d4a6b;
+            color: #7ab8ff;
         }
 
         /* Responsive */
@@ -602,6 +747,10 @@
                 background: var(--primary-color);
                 flex-direction: column;
                 padding: 1rem;
+            }
+
+            [data-theme="dark"] .nav-menu {
+                background: var(--bg-secondary);
             }
 
             .nav-menu.active {
@@ -628,6 +777,18 @@
 
             .nav-container {
                 padding: 1rem;
+            }
+
+            .social-floating {
+                display: none;
+            }
+
+            .theme-toggle {
+                top: 20px;
+                right: 70px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
 
@@ -677,17 +838,32 @@
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Przełącz tryb ciemny">
+        🌙
+    </button>
+
+    <!-- Floating Social Media Buttons -->
+    <div class="social-floating">
+        <a href="https://www.facebook.com/your-page" target="_blank" class="social-btn facebook" title="Facebook">
+            📘
+        </a>
+        <a href="https://www.instagram.com/your-profile" target="_blank" class="social-btn instagram" title="Instagram">
+            📷
+        </a>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo" onclick="showHome()">Equine Moments</a>
+            <a href="#" class="logo" onclick="showHome()">Chwile Konne</a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#" class="nav-link" onclick="showHome()">Home</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('gallery')">Gallery</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('about')">About</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" class="nav-link" onclick="showHome()">Strona Główna</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('gallery')">Galeria</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('about')">O Mnie</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('services')">Usługi</a></li>
                 <li><a href="#" class="nav-link" onclick="showPage('blog')">Blog</a></li>
-                <li><a href="#" class="nav-link" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('contact')">Kontakt</a></li>
             </ul>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
         </div>
@@ -696,22 +872,22 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-content fade-in">
-            <h1>Capturing Equine Grace</h1>
-            <p>Professional horse photography that tells your story</p>
-            <a href="#" class="cta-button" onclick="showPage('gallery')">View Portfolio</a>
+            <h1>Uchwycenie Końskiej Gracji</h1>
+            <p>Profesjonalna fotografia koni, która opowiada Twoją historię</p>
+            <a href="#" class="cta-button" onclick="showPage('gallery')">Zobacz Portfolio</a>
         </div>
     </section>
 
     <!-- Gallery Page -->
     <div id="gallery" class="page-content">
         <div class="container">
-            <h2 class="section-title">Portfolio Gallery</h2>
+            <h2 class="section-title">Galeria Portfolio</h2>
             <div class="gallery-filters">
-                <button class="filter-btn active" onclick="filterGallery('all')">All Photos</button>
-                <button class="filter-btn" onclick="filterGallery('portraits')">Portraits</button>
-                <button class="filter-btn" onclick="filterGallery('action')">Action Shots</button>
-                <button class="filter-btn" onclick="filterGallery('landscape')">Landscapes</button>
-                <button class="filter-btn" onclick="filterGallery('events')">Events</button>
+                <button class="filter-btn active" onclick="filterGallery('all')">Wszystkie Zdjęcia</button>
+                <button class="filter-btn" onclick="filterGallery('portraits')">Portrety</button>
+                <button class="filter-btn" onclick="filterGallery('action')">Zdjęcia Akcji</button>
+                <button class="filter-btn" onclick="filterGallery('landscape')">Krajobrazy</button>
+                <button class="filter-btn" onclick="filterGallery('events')">Wydarzenia</button>
             </div>
             <div class="gallery-grid" id="galleryGrid">
                 <!-- Gallery items will be populated by JavaScript -->
@@ -722,38 +898,38 @@
     <!-- About Page -->
     <div id="about" class="page-content">
         <div class="container">
-            <h2 class="section-title">About the Photographer</h2>
+            <h2 class="section-title">O Fotografce</h2>
             <div class="about-content">
                 <div class="about-text slide-in-left">
-                    <h3>Welcome to Equine Moments</h3>
-                    <p>With over 15 years of experience in equine photography, I specialize in capturing the unique bond between horses and their human companions. My passion for these magnificent creatures began in childhood and has evolved into a professional calling.</p>
-                    <p>From intimate portrait sessions to dynamic action shots at competitions, I bring technical expertise and artistic vision to every shoot. My goal is to create timeless images that showcase the beauty, power, and spirit of horses.</p>
-                    <p>Based in the heart of horse country, I travel throughout the region working with professional riders, trainers, and horse enthusiasts who want to preserve their most precious memories.</p>
+                    <h3>Witaj w Chwilach Konnych</h3>
+                    <p>Z ponad 15-letnim doświadczeniem w fotografii jeździeckiej, specjalizuję się w uchwyceniu wyjątkowej więzi między końmi i ich ludzkimi towarzyszami. Moja pasja do tych wspaniałych stworzeń zaczęła się w dzieciństwie i przekształciła w zawodowe powołanie.</p>
+                    <p>Od intymnych sesji portretowych po dynamiczne zdjęcia akcji na zawodach, wnoszę techniczną wiedzę i artystyczną wizję do każdej sesji. Moim celem jest tworzenie ponadczasowych obrazów, które pokazują piękno, moc i ducha koni.</p>
+                    <p>Mieszkając w sercu krainy koni, podróżuję po całym regionie, pracując z profesjonalnymi jeźdźcami, trenerami i miłośnikami koni, którzy chcą zachować swoje najcenniejsze wspomnienia.</p>
                 </div>
                 <div class="about-image slide-in-right">
-                    Professional Photographer Portrait
+                    Portret Profesjonalnej Fotografki
                 </div>
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="skill-icon">📸</div>
-                    <h3>Portrait Photography</h3>
-                    <p>Stunning portraits that capture the unique personality of each horse and rider combination.</p>
+                    <h3>Fotografia Portretowa</h3>
+                    <p>Oszałamiające portrety uchwycące unikalną osobowość każdego konia i jeźdźca.</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">⚡</div>
-                    <h3>Action Photography</h3>
-                    <p>Dynamic shots that freeze those perfect moments of power and grace in motion.</p>
+                    <h3>Fotografia Akcji</h3>
+                    <p>Dynamiczne ujęcia zamrażające idealne momenty mocy i gracji w ruchu.</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🏆</div>
-                    <h3>Event Coverage</h3>
-                    <p>Complete event documentation from warm-up to victory lap at competitions and shows.</p>
+                    <h3>Relacje z Wydarzeń</h3>
+                    <p>Kompletna dokumentacja wydarzeń od rozgrzewki po okrążenie zwycięstwa na zawodach i pokazach.</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">🌅</div>
-                    <h3>Lifestyle Sessions</h3>
-                    <p>Natural, candid photography that tells the story of daily life with horses.</p>
+                    <h3>Sesje Lifestyle</h3>
+                    <p>Naturalna, szczera fotografia opowiadająca historię codziennego życia z końmi.</p>
                 </div>
             </div>
         </div>
@@ -762,55 +938,55 @@
     <!-- Services Page -->
     <div id="services" class="page-content">
         <div class="container">
-            <h2 class="section-title">Photography Services</h2>
+            <h2 class="section-title">Usługi Fotograficzne</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3>Portrait Session</h3>
-                    <div class="service-price">$350</div>
+                    <h3>Sesja Portretowa</h3>
+                    <div class="service-price">1400 zł</div>
                     <ul class="service-features">
-                        <li>1-2 hour session</li>
-                        <li>Up to 2 horses</li>
-                        <li>20 edited high-resolution images</li>
-                        <li>Online gallery for easy sharing</li>
-                        <li>Print release included</li>
+                        <li>Sesja 1-2 godziny</li>
+                        <li>Do 2 koni</li>
+                        <li>20 obrobionych zdjęć wysokiej rozdzielczości</li>
+                        <li>Galeria online do łatwego udostępniania</li>
+                        <li>Licencja na wydruki w cenie</li>
                     </ul>
-                    <a href="#" class="cta-button" onclick="showPage('contact')">Book Now</a>
+                    <a href="#" class="cta-button" onclick="showPage('contact')">Zarezerwuj Teraz</a>
                 </div>
                 <div class="service-card">
-                    <h3>Action Package</h3>
-                    <div class="service-price">$500</div>
+                    <h3>Pakiet Akcji</h3>
+                    <div class="service-price">2000 zł</div>
                     <ul class="service-features">
-                        <li>2-3 hour session</li>
-                        <li>Training or riding session</li>
-                        <li>35 edited high-resolution images</li>
-                        <li>Multiple locations if desired</li>
-                        <li>Rush delivery available</li>
+                        <li>Sesja 2-3 godziny</li>
+                        <li>Sesja treningowa lub jazda</li>
+                        <li>35 obrobionych zdjęć wysokiej rozdzielczości</li>
+                        <li>Wiele lokalizacji według życzenia</li>
+                        <li>Dostępna ekspresowa realizacja</li>
                     </ul>
-                    <a href="#" class="cta-button" onclick="showPage('contact')">Book Now</a>
+                    <a href="#" class="cta-button" onclick="showPage('contact')">Zarezerwuj Teraz</a>
                 </div>
                 <div class="service-card">
-                    <h3>Event Coverage</h3>
-                    <div class="service-price">$750</div>
+                    <h3>Relacja z Wydarzenia</h3>
+                    <div class="service-price">3000 zł</div>
                     <ul class="service-features">
-                        <li>Full day coverage</li>
-                        <li>Competition or show event</li>
-                        <li>50+ edited images</li>
-                        <li>Same-day previews available</li>
-                        <li>Individual rider packages</li>
+                        <li>Relacja z całego dnia</li>
+                        <li>Zawody lub pokaz koni</li>
+                        <li>50+ obrobionych zdjęć</li>
+                        <li>Dostępne podglądy tego samego dnia</li>
+                        <li>Indywidualne pakiety dla jeźdźców</li>
                     </ul>
-                    <a href="#" class="cta-button" onclick="showPage('contact')">Book Now</a>
+                    <a href="#" class="cta-button" onclick="showPage('contact')">Zarezerwuj Teraz</a>
                 </div>
                 <div class="service-card">
-                    <h3>Premium Package</h3>
-                    <div class="service-price">$1200</div>
+                    <h3>Pakiet Premium</h3>
+                    <div class="service-price">4800 zł</div>
                     <ul class="service-features">
-                        <li>Full day exclusive session</li>
-                        <li>Multiple horses and riders</li>
-                        <li>100+ edited images</li>
-                        <li>Custom photo album included</li>
-                        <li>Usage rights for marketing</li>
+                        <li>Ekskluzywna sesja na cały dzień</li>
+                        <li>Wiele koni i jeźdźców</li>
+                        <li>100+ obrobionych zdjęć</li>
+                        <li>Niestandardowy album fotograficzny w cenie</li>
+                        <li>Prawa użytkowania do marketingu</li>
                     </ul>
-                    <a href="#" class="cta-button" onclick="showPage('contact')">Book Now</a>
+                    <a href="#" class="cta-button" onclick="showPage('contact')">Zarezerwuj Teraz</a>
                 </div>
             </div>
         </div>
@@ -819,42 +995,42 @@
     <!-- Blog Page -->
     <div id="blog" class="page-content">
         <div class="container">
-            <h2 class="section-title">Photography Blog</h2>
+            <h2 class="section-title">Blog Fotograficzny</h2>
             <div class="blog-grid">
                 <article class="blog-card">
-                    <div class="blog-image">Recent Competition Highlights</div>
+                    <div class="blog-image">Najlepsze Momenty z Zawodów</div>
                     <div class="blog-content">
-                        <div class="blog-date">March 15, 2024</div>
-                        <h3 class="blog-title">Capturing the Spirit of Competition</h3>
-                        <p>Last weekend's regional championship provided incredible opportunities to photograph some of the most talented horse and rider combinations...</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-date">15 marca 2024</div>
+                        <h3 class="blog-title">Uchwycenie Ducha Rywalizacji</h3>
+                        <p>Weekendowe regionalne mistrzostwa zapewniły niesamowite możliwości sfotografowania najbardziej utalentowanych par koń-jeźdźiec...</p>
+                        <a href="#" class="read-more">Czytaj Więcej</a>
                     </div>
                 </article>
                 <article class="blog-card">
-                    <div class="blog-image">Photography Tips</div>
+                    <div class="blog-image">Porady Fotograficzne</div>
                     <div class="blog-content">
-                        <div class="blog-date">March 8, 2024</div>
-                        <h3 class="blog-title">Tips for Better Horse Photography</h3>
-                        <p>Whether you're a professional or enthusiast, these techniques will help you capture stunning equine images...</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-date">8 marca 2024</div>
+                        <h3 class="blog-title">Wskazówki dla Lepszej Fotografii Koni</h3>
+                        <p>Niezależnie czy jesteś profesjonalistą czy entuzjastą, te techniki pomogą Ci uchwycić oszałamiające zdjęcia koni...</p>
+                        <a href="#" class="read-more">Czytaj Więcej</a>
                     </div>
                 </article>
                 <article class="blog-card">
-                    <div class="blog-image">Behind the Scenes</div>
+                    <div class="blog-image">Za Kulisami</div>
                     <div class="blog-content">
-                        <div class="blog-date">February 28, 2024</div>
-                        <h3 class="blog-title">Behind the Scenes: Sunrise Session</h3>
-                        <p>Early morning shoots offer magical lighting conditions, but they come with unique challenges...</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-date">28 lutego 2024</div>
+                        <h3 class="blog-title">Za Kulisami: Sesja o Wschodzie Słońca</h3>
+                        <p>Wczesnoporanne sesje oferują magiczne warunki oświetleniowe, ale niosą ze sobą unikalne wyzwania...</p>
+                        <a href="#" class="read-more">Czytaj Więcej</a>
                     </div>
                 </article>
                 <article class="blog-card">
-                    <div class="blog-image">Equipment Review</div>
+                    <div class="blog-image">Recenzja Sprzętu</div>
                     <div class="blog-content">
-                        <div class="blog-date">February 20, 2024</div>
-                        <h3 class="blog-title">Camera Gear for Equine Photography</h3>
-                        <p>A comprehensive review of the essential equipment for professional horse photography...</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <div class="blog-date">20 lutego 2024</div>
+                        <h3 class="blog-title">Sprzęt Fotograficzny do Fotografii Koni</h3>
+                        <p>Kompleksowa recenzja niezbędnego sprzętu do profesjonalnej fotografii koni...</p>
+                        <a href="#" class="read-more">Czytaj Więcej</a>
                     </div>
                 </article>
             </div>
@@ -864,86 +1040,89 @@
     <!-- Contact Page -->
     <div id="contact" class="page-content">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title">Skontaktuj Się</h2>
             <div class="contact-content">
                 <div class="contact-form slide-in-left">
-                    <h3>Book Your Session</h3>
-                    <form id="contactForm">
+                    <h3>Zarezerwuj Swoją Sesję</h3>
+                    <div class="form-notice">
+                        💡 <strong>Formularz działa!</strong> Używamy Formspree.io do przetwarzania wiadomości. Po wysłaniu otrzymasz potwierdzenie na email.
+                    </div>
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
                         <div class="form-group">
-                            <label for="name">Full Name *</label>
+                            <label for="name">Imię i Nazwisko *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Address *</label>
+                            <label for="email">Adres Email *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone Number</label>
+                            <label for="phone">Numer Telefonu</label>
                             <input type="tel" id="phone" name="phone">
                         </div>
                         <div class="form-group">
-                            <label for="service">Service Interest</label>
+                            <label for="service">Interesująca Usługa</label>
                             <select id="service" name="service">
-                                <option value="">Select a service</option>
-                                <option value="portrait">Portrait Session</option>
-                                <option value="action">Action Package</option>
-                                <option value="event">Event Coverage</option>
-                                <option value="premium">Premium Package</option>
-                                <option value="custom">Custom Package</option>
+                                <option value="">Wybierz usługę</option>
+                                <option value="portrait">Sesja Portretowa</option>
+                                <option value="action">Pakiet Akcji</option>
+                                <option value="event">Relacja z События</option>
+                                <option value="premium">Pakiet Premium</option>
+                                <option value="custom">Pakiet Niestandardowy</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="date">Preferred Date</label>
+                            <label for="date">Preferowana Data</label>
                             <input type="date" id="date" name="date">
                         </div>
                         <div class="form-group">
-                            <label for="message">Tell me about your vision *</label>
-                            <textarea id="message" name="message" placeholder="Describe your horses, the type of shoot you're envisioning, location preferences, and any special requests..." required></textarea>
+                            <label for="message">Opowiedz mi o swojej wizji *</label>
+                            <textarea id="message" name="message" placeholder="Opisz swoje konie, typ sesji którą sobie wyobrażasz, preferencje lokalizacji i wszelkie specjalne życzenia..." required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">
-                            <span id="submitText">Send Message</span>
+                            <span id="submitText">Wyślij Wiadomość</span>
                             <span id="submitLoading" class="loading" style="display: none;"></span>
                         </button>
                     </form>
                 </div>
                 <div class="contact-info slide-in-right">
-                    <h3>Contact Information</h3>
+                    <h3>Informacje Kontaktowe</h3>
                     <div class="contact-item">
                         <div class="contact-icon">📧</div>
                         <div>
                             <strong>Email</strong><br>
-                            info@equinemoments.com
+                            info@chwilekonne.pl
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📱</div>
                         <div>
-                            <strong>Phone</strong><br>
-                            (555) 123-4567
+                            <strong>Telefon</strong><br>
+                            +48 123 456 789
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📍</div>
                         <div>
-                            <strong>Location</strong><br>
-                            Lexington, Kentucky<br>
-                            Travel available throughout the region
+                            <strong>Lokalizacja</strong><br>
+                            Gdańsk, Pomorskie<br>
+                            Dojazdy dostępne w całnym regionie
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">⏰</div>
                         <div>
-                            <strong>Response Time</strong><br>
-                            Within 24 hours<br>
-                            Rush bookings available
+                            <strong>Czas Odpowiedzi</strong><br>
+                            W ciągu 24 godzin<br>
+                            Dostępne pilne rezerwacje
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">💰</div>
                         <div>
-                            <strong>Payment</strong><br>
-                            50% deposit to book<br>
-                            Flexible payment plans available
+                            <strong>Płatność</strong><br>
+                            50% zaliczki na rezerwację<br>
+                            Dostępne elastyczne plany płatności
                         </div>
                     </div>
                 </div>
@@ -965,35 +1144,62 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="social-links">
-                <a href="#" class="social-link">📘</a>
-                <a href="#" class="social-link">📷</a>
-                <a href="#" class="social-link">🐦</a>
-                <a href="#" class="social-link">💼</a>
+                <a href="https://www.facebook.com/your-page" class="social-link" target="_blank">📘</a>
+                <a href="https://www.instagram.com/your-profile" class="social-link" target="_blank">📷</a>
+                <a href="https://twitter.com/your-profile" class="social-link" target="_blank">🐦</a>
+                <a href="https://linkedin.com/in/your-profile" class="social-link" target="_blank">💼</a>
             </div>
-            <p>&copy; 2024 Equine Moments Photography. All rights reserved.</p>
-            <p>Professional horse photography services | Licensed & Insured</p>
+            <p>&copy; 2024 Chwile Konne Fotografia. Wszelkie prawa zastrzeżone.</p>
+            <p>Profesjonalne usługi fotografii koni | Licencjonowane i Ubezpieczone</p>
         </div>
     </footer>
 
     <script>
-        // Sample gallery data
+        // Sample gallery data in Polish
         const galleryData = [
-            { id: 1, category: 'portraits', title: 'Majestic Stallion', description: 'Arabian stallion portrait at sunset', image: 'Arabian Stallion Portrait' },
-            { id: 2, category: 'action', title: 'Jump Competition', description: 'Show jumping at regional championship', image: 'Show Jumping Action' },
-            { id: 3, category: 'portraits', title: 'Mare and Foal', description: 'Tender moment between mother and baby', image: 'Mare and Foal Bond' },
-            { id: 4, category: 'landscape', title: 'Morning Pasture', description: 'Horses grazing in morning mist', image: 'Horses in Morning Mist' },
-            { id: 5, category: 'action', title: 'Barrel Racing', description: 'High-speed barrel racing competition', image: 'Barrel Racing Action' },
-            { id: 6, category: 'events', title: 'Victory Ceremony', description: 'Championship ribbon presentation', image: 'Victory Ceremony' },
-            { id: 7, category: 'portraits', title: 'Rider Portrait', description: 'Professional rider with beloved mount', image: 'Rider and Horse Portrait' },
-            { id: 8, category: 'landscape', title: 'Sunset Silhouette', description: 'Horse silhouettes against dramatic sky', image: 'Sunset Horse Silhouettes' },
-            { id: 9, category: 'action', title: 'Dressage Performance', description: 'Elegant dressage movements', image: 'Dressage Performance' },
-            { id: 10, category: 'events', title: 'Behind the Scenes', description: 'Preparation before competition', image: 'Competition Preparation' },
-            { id: 11, category: 'portraits', title: 'Young Rider', description: 'Junior equestrian with her pony', image: 'Young Rider Portrait' },
-            { id: 12, category: 'landscape', title: 'Wild Horses', description: 'Free-roaming horses in natural habitat', image: 'Wild Horses Landscape' }
+            { id: 1, category: 'portraits', title: 'Majestatyczny Ogier', description: 'Portret ogiera arabskiego o zachodzie słońca', image: 'Portret Ogiera Arabskiego' },
+            { id: 2, category: 'action', title: 'Zawody Skoków', description: 'Skoki przez przeszkody na regionalnych mistrzostwach', image: 'Akcja Skoków Przez Przeszkody' },
+            { id: 3, category: 'portraits', title: 'Klacz z Źrebięciem', description: 'Czuły moment między matką a dzieckiem', image: 'Więź Klacz ze Źrebięciem' },
+            { id: 4, category: 'landscape', title: 'Poranne Pastwisko', description: 'Konie pasące się w porannej mgle', image: 'Konie w Porannej Mgle' },
+            { id: 5, category: 'action', title: 'Wyścigi Beczek', description: 'Szybkie zawody wyścigów beczek', image: 'Akcja Wyścigów Beczek' },
+            { id: 6, category: 'events', title: 'Ceremonia Zwycięstwa', description: 'Wręczenie mistrzowskich wstążek', image: 'Ceremonia Zwycięstwa' },
+            { id: 7, category: 'portraits', title: 'Portret Jeźdźca', description: 'Profesjonalny jeździec z ukochanym koniem', image: 'Portret Jeźdźca i Konia' },
+            { id: 8, category: 'landscape', title: 'Sylwetka o Zachodzie', description: 'Sylwetki koni na dramatycznym niebie', image: 'Sylwetki Koni o Zachodzie' },
+            { id: 9, category: 'action', title: 'Występ Ujeżdżenia', description: 'Eleganckie ruchy ujeżdżenia', image: 'Występ Ujeżdżenia' },
+            { id: 10, category: 'events', title: 'Za Kulisami', description: 'Przygotowania przed zawodami', image: 'Przygotowania do Zawodów' },
+            { id: 11, category: 'portraits', title: 'Młody Jeździec', description: 'Młody jeździec ze swoim kucykiem', image: 'Portret Młodego Jeźdźca' },
+            { id: 12, category: 'landscape', title: 'Dzikie Konie', description: 'Swobodnie żyjące konie w naturalnym środowisku', image: 'Krajobraz Dzikich Koni' }
         ];
 
         let currentImageIndex = 0;
         let currentFilter = 'all';
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        }
 
         // Navigation functions
         function showHome() {
@@ -1142,7 +1348,7 @@
             openLightbox(currentImageIndex, items);
         }
 
-        // Contact form handling
+        // Contact form handling with Formspree
         document.addEventListener('DOMContentLoaded', function() {
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
@@ -1151,9 +1357,13 @@
                     handleFormSubmit();
                 });
             }
+            
+            // Load theme on page load
+            loadTheme();
         });
 
         function handleFormSubmit() {
+            const form = document.getElementById('contactForm');
             const submitBtn = document.querySelector('.submit-btn');
             const submitText = document.getElementById('submitText');
             const submitLoading = document.getElementById('submitLoading');
@@ -1163,21 +1373,37 @@
             submitLoading.style.display = 'inline-block';
             submitBtn.disabled = true;
             
-            // Simulate form submission
-            setTimeout(() => {
-                alert('Thank you for your message! I\'ll get back to you within 24 hours.');
-                
-                // Reset form
-                document.getElementById('contactForm').reset();
-                
+            // Create FormData object
+            const formData = new FormData(form);
+            
+            // Send to Formspree (you need to replace YOUR_FORM_ID with actual Formspree form ID)
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Dziękuję za wiadomość! Odezwę się w ciągu 24 godzin.');
+                    form.reset();
+                } else {
+                    throw new Error('Błąd sieci');
+                }
+            })
+            .catch(error => {
+                alert('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie lub skontaktuj się bezpośrednio przez email.');
+            })
+            .finally(() => {
                 // Reset button state
                 submitText.style.display = 'inline';
                 submitLoading.style.display = 'none';
                 submitBtn.disabled = false;
-            }, 2000);
+            });
         }
 
-        // Smooth scrolling for navigation
+        // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             // Set minimum date to today for booking
             const dateInput = document.getElementById('date');
@@ -1188,6 +1414,9 @@
             
             // Initialize with home page
             showHome();
+            
+            // Add interactive features
+            addInteractiveFeatures();
         });
 
         // Close lightbox when clicking outside the image
@@ -1228,32 +1457,17 @@
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            const baseColor = isDark ? 'rgba(26, 26, 26' : 'rgba(44, 24, 16';
+            
             if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(44, 24, 16, 0.98)';
+                navbar.style.background = `${baseColor}, 0.98)`;
             } else {
-                navbar.style.background = 'rgba(44, 24, 16, 0.95)';
+                navbar.style.background = `${baseColor}, 0.95)`;
             }
         });
 
-        // Add loading animation to page transitions
-        function addPageTransition() {
-            const pages = document.querySelectorAll('.page-content');
-            pages.forEach(page => {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('fade-in');
-                        }
-                    });
-                });
-                observer.observe(page);
-            });
-        }
-
-        // Initialize page transitions
-        document.addEventListener('DOMContentLoaded', addPageTransition);
-
-        // Add some interactive features
+        // Add interactive features
         function addInteractiveFeatures() {
             // Parallax effect for hero section
             window.addEventListener('scroll', function() {
@@ -1277,9 +1491,6 @@
             });
         }
 
-        // Initialize interactive features
-        document.addEventListener('DOMContentLoaded', addInteractiveFeatures);
-
         // Service booking functionality
         function bookService(serviceName) {
             showPage('contact');
@@ -1297,51 +1508,6 @@
                 }
             }, 100);
         }
-
-        // Add testimonials data and functionality
-        const testimonials = [
-            {
-                name: "Sarah Johnson",
-                text: "Absolutely stunning work! The photos captured the perfect bond between my mare and me.",
-                rating: 5
-            },
-            {
-                name: "Mike Thompson",
-                text: "Professional, patient, and incredibly talented. Highly recommend for any equine photography needs.",
-                rating: 5
-            },
-            {
-                name: "Lisa Martinez",
-                text: "The action shots from our competition were breathtaking. Worth every penny!",
-                rating: 5
-            }
-        ];
-
-        // Add search functionality for blog
-        function searchBlog(query) {
-            // This would typically connect to a backend search
-            console.log('Searching blog for:', query);
-        }
-
-        // Add newsletter signup functionality
-        function subscribeNewsletter(email) {
-            // This would typically connect to an email service
-            alert('Thank you for subscribing to our newsletter!');
-        }
-
-        // Add print-friendly CSS
-        const printStyles = `
-            @media print {
-                .navbar, .footer, .lightbox { display: none !important; }
-                .page-content { margin-top: 0 !important; }
-                .hero { height: auto !important; }
-                body { background: white !important; }
-            }
-        `;
-        
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = printStyles;
-        document.head.appendChild(styleSheet);
     </script>
 </body>
 </html>
